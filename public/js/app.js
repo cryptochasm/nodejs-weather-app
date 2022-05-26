@@ -8,23 +8,21 @@ weatherForm.addEventListener('submit', (e) => {
 
   messageOne.textContent = 'Loading...'
 
-  fetch('http://nodejs:3000/weather?address=' + search.value).then(
-    (response) => {
-      response.json().then((data) => {
-        if (data.error) {
-          messageOne.textContent = data.error
-        } else {
-          messageOne.textContent = data.location
-          // messageTwo.textContent = JSON.stringify(data.forecast)
-          messageTwo.textContent =
-            data.forecast.description +
-            ' and ' +
-            data.forecast.temperature +
-            ' degrees.  It feels like ' +
-            data.forecast.feelslike +
-            ' degrees.'
-        }
-      })
-    }
-  )
+  fetch('/weather?address=' + search.value).then((response) => {
+    response.json().then((data) => {
+      if (data.error) {
+        messageOne.textContent = data.error
+      } else {
+        messageOne.textContent = data.location
+        // messageTwo.textContent = JSON.stringify(data.forecast)
+        messageTwo.textContent =
+          data.forecast.description +
+          ' and ' +
+          data.forecast.temperature +
+          ' degrees.  It feels like ' +
+          data.forecast.feelslike +
+          ' degrees.'
+      }
+    })
+  })
 })
