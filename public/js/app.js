@@ -13,13 +13,19 @@ weatherForm.addEventListener('submit', (e) => {
       if (data.error) {
         messageOne.textContent = data.error
       } else {
-        messageOne.textContent = data.location
+        messageOne.textContent = `Location: ${
+          data.location
+        } (${data.latitude.toFixed(4)}, ${data.longitude.toFixed(4)})`
         // messageTwo.textContent = JSON.stringify(data.forecast)
         messageTwo.textContent =
           data.forecast.description +
           ' and ' +
           data.forecast.temperature +
-          ' degrees.  It feels like ' +
+          ' degrees.  The wind speed is ' +
+          data.forecast.windspeed +
+          ' mph, and the current humidity is ' +
+          data.forecast.humidity +
+          '%. It feels like ' +
           data.forecast.feelslike +
           ' degrees.'
       }
